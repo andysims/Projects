@@ -48,16 +48,16 @@ def move_files():
                 shutil.move(file_loc, mv_loc)
             except FileNotFoundError:
                 print(f"File not found: {file}")
+    del_dir()
 
 
 def del_dir():
     for file in files_in_downloads:
         if file not in ignore_files:
-            path = f"{downloads}/{file}"
-            length = len(os.listdir(path))
-            if length == 0:
-                shutil.move(path, trash)
+            folder = f"{downloads}/{file}"
+            if len(os.listdir(folder)) == 0:
+                print(f'Moved {file} to Trash.')
+                shutil.move(folder, trash)
 
 
 move_files()
-del_dir()
